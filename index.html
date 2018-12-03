@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tarefas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
+    <style>
+        input[type=checkbox]:checked ~ label {
+            text-decoration: line-through;
+         }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="topo">
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-6">
+                <h2>Lista de Tarefas</h2>
+            </div>
+            <div class="col-6">
+                <button type="submit" id="mostrarTerminadas" class="btn btn-outline-info">Mostrar Terminadas</button>
+                <button type="submit" id="removerTarefas" class="btn btn-outline-danger">Remover Tarefas Terminadas</button>
+            </div>
+        </div>
+
+        <div class="row" id="tableTarefas">
+            <div class="col-12">
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Terminada</th>
+                            <th class="col-4">Tarefa</th>
+                            <th>Prazo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodyTable">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-12">
+                <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#modalNovaTarefa">Nova
+                    Tarefa</button>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal Nova Tarefa-->
+    <div class="modal" id="modalNovaTarefa">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="container">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">Nova Tarefa</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <form id="NovaTarefa">
+                                <div class="form-group">
+                                    <label for="inputTarefa">Tarefa</label>
+                                    <input type="text" class="form-control" id="inputTarefa" placeholder="Tarefa">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPrazo">Prazo</label>
+                                    <input type="text" class="form-control" id="inputPrazo" placeholder="mm/dd/yyyy">
+                                </div>
+                                <button type="submit" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-outline-primary">Add Nova Tarefa</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="tarefa.js" type="text/javascript"></script>
+</body>
+
+</html>
