@@ -8,11 +8,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
 
-    <style>
-        input[type=checkbox]:checked ~ label {
-            text-decoration: line-through;
-         }
-    </style>
 </head>
 
 <body>
@@ -24,8 +19,8 @@
                 <h2>Lista de Tarefas</h2>
             </div>
             <div class="col-6">
-                <button type="submit" id="mostrarTerminadas" class="btn btn-outline-info">Mostrar Terminadas</button>
-                <button type="submit" id="removerTarefas" class="btn btn-outline-danger">Remover Tarefas Terminadas</button>
+                <button type="button" onclick="mostrarTerminadas()" id="mostrarTerminadas" name="mostrarTerminadas" class="btn btn-outline-info">Mostrar Terminadas</button>
+                <button type="button" onclick="removerTarefas()" id="removerTarefas" name="removerTarefas" class="btn btn-outline-danger">Remover Tarefas Terminadas</button>
             </div>
         </div>
 
@@ -39,20 +34,20 @@
                             <th>Prazo</th>
                         </tr>
                     </thead>
-                    <tbody id="bodyTable">
+                    <tbody id="bodyTable" class="bodyTable">
 
                     </tbody>
                 </table>
             </div>
             <div class="col-12">
-                <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#modalNovaTarefa">Nova
-                    Tarefa</button>
+                <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#modalNovaTarefa">Nova Tarefa
+                </button>
             </div>
         </div>
     </div>
 
     <!--Modal Nova Tarefa-->
-    <div class="modal" id="modalNovaTarefa">
+    <div class="modal" id="modalNovaTarefa" name="modalNovaTarefa">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="container">
@@ -67,14 +62,14 @@
                             <form id="NovaTarefa">
                                 <div class="form-group">
                                     <label for="inputTarefa">Tarefa</label>
-                                    <input type="text" class="form-control" id="inputTarefa" placeholder="Tarefa">
+                                    <input type="text" class="form-control" id="inputTarefa" name="inputTarefa" placeholder="Tarefa">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPrazo">Prazo</label>
-                                    <input type="text" class="form-control" id="inputPrazo" placeholder="mm/dd/yyyy">
+                                    <input type="text" class="form-control" id="inputPrazo" name="inputPrazo" placeholder="mm/dd/yyyy">
                                 </div>
-                                <button type="submit" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-outline-primary">Add Nova Tarefa</button>
+                                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
+                                <button type="button" onclick="addTarefa()" class="btn btn-outline-primary" id="buttonAdd" name="buttonAdd">Add Nova Tarefa</button>
                             </form>
                         </div>
                     </div>

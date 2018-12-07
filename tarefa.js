@@ -3,15 +3,22 @@ var idCont = 0;
 
 $(document).ready(function () {
 
+
 });
 
+$(".check").onclick = function () {
+    alert("aaaaa");
+};
+
+
 //adiciona nova tarefa, depois carrega a tabela listando as tarefas
-$("#NovaTarefa").on("submit", function () {
+//$("#NovaTarefa").on("submit", 
+buttonAdd.onclick = function addTarefa() {
     let tarefaCompleta = {
         "id": idCont,
         "tarefa": $('#inputTarefa').val(),
         "prazo": $('#inputPrazo').val(),
-        // "terminada": false
+        "terminada": false
     }
 
     tarefas.push(tarefaCompleta);
@@ -20,7 +27,9 @@ $("#NovaTarefa").on("submit", function () {
     clearForm();
 
     listarTarefas();
-});
+
+    $('#modalNovaTarefa').modal('hide')
+};
 
 //limpar o form
 function clearForm() {
@@ -30,49 +39,47 @@ function clearForm() {
 
 //insere uma linha para cada tarefa que está no array
 function listarTarefas() {
+    //limpa o body da table
+    document.querySelector(".bodyTable").innerHTML = '';
+
     for (var i = 0; i < tarefas.length; i++) {
         let tarefa = tarefas[i];
-        $("#bodyTable").append(
-            `<tr><td><input type="checkbox" id="${tarefa.id}"></input></td>
+        if (tarefa.terminada == false) {
+            $("#bodyTable").append(
+                `<tr><td><input type="checkbox" class="check" name="${tarefa.id}"></input></td>
             <td>${tarefa.tarefa}</td>
             <td>${tarefa.prazo}</td></tr>`);
+        }
     }
 }
 
-//marca tarefas selecionadas como terminadas, depois carrega a tabela listando as tarefas
-$("#mostrarTerminadas").on("submit", function () {
-    alert("marcar tarefa");
+mostrarTerminadas.onclick = function mostrarTerminadas() {
 
-    //conta as rows da tabela
-    var linhas = document.getElementById("tableTarefas").rows.length;
+    let checks = document.querySelectorAll(".check");
 
-    let listaMarcadas = document.querySelectorAll("input:checked");
+    for (var i = 0; i < tarefas.length; i++) {
+        if (checks[i].checked) {
+            tarefas[i].terminada = true;
 
-    console.log(listaMarcadas);
-
-    for (var i = 0; i < linhas; i++) {
-
-        if (listaMarcadas[i].checked) {
-            
+            $("#bodyTable").append(
+                `<tr><td><input type="checkbox" class="check" name="${tarefas[i].id}"></td>
+                <td><strike>${tarefas[i].tarefa}</strike></td>
+                <td><strike>${tarefas[i].prazo}</strike></td></tr>`);
         }
-
     }
 
-    //$(".myclass").css("text-decoration: line-through;");
+};
 
+removerTarefas.onclick = function removerTarefas() {
+    let checks = document.querySelectorAll(".check");
 
-    /*for (var i = 0; i < tarefas.length; i++) {
-        let tarefa = tarefas[i];
-        if(listaMarcadas[i].checked){
-            tarefas.splice(i);
+    for (var i = 0; i < tarefas.length; i++) {
+
+        if (checks[i].checked) {
+            tarefas[i].terminada = true;
         }
-    }    
-    
+    }
+
     idCont--;
-    listarTarefas();*/
-});
-
-
-
-    //<del> ou <strike>
-
+    listarTarefas();
+};
