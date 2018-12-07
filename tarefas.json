@@ -1,7 +1,0 @@
-[
-    { "id": 1, "tarefa": "Tarefa 1", "prazo": "02/19/2018" },
-    { "id": 2, "tarefa": "Tarefa 2", "prazo": "05/10/2018" },
-    { "id": 3, "tarefa": "Tarefa 3", "prazo": "12/03/2018" },
-    { "id": 4, "tarefa": "Tarefa 4", "prazo": "08/25/2018" },
-    { "id": 5, "tarefa": "Tarefa 5", "prazo": "03/30/2018" }    
-]
