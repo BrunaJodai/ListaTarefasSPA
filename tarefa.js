@@ -6,13 +6,12 @@ $(document).ready(function () {
 
 });
 
-$(".check").onclick = function () {
-    alert("aaaaa");
-};
+$("bodyTable").on('click', '.check', function () {
+    alert($(this).attr('value'));
+});
 
 
 //adiciona nova tarefa, depois carrega a tabela listando as tarefas
-//$("#NovaTarefa").on("submit", 
 buttonAdd.onclick = function addTarefa() {
     let tarefaCompleta = {
         "id": idCont,
@@ -44,13 +43,13 @@ function listarTarefas() {
 
     for (var i = 0; i < tarefas.length; i++) {
         let tarefa = tarefas[i];
-        if (tarefa.terminada == false) {
+    //    if (tarefa.terminada == false) {
             $("#bodyTable").append(
                 `<tr><td><input type="checkbox" class="check" name="${tarefa.id}"></input></td>
             <td>${tarefa.tarefa}</td>
             <td>${tarefa.prazo}</td></tr>`);
         }
-    }
+ //   }
 }
 
 mostrarTerminadas.onclick = function mostrarTerminadas() {
@@ -59,10 +58,14 @@ mostrarTerminadas.onclick = function mostrarTerminadas() {
 
     for (var i = 0; i < tarefas.length; i++) {
         if (checks[i].checked) {
+            //altera pra true, se o checkbox estiver selecionado
             tarefas[i].terminada = true;
 
+            //dps limpa a table, para não repetir os dados
+            document.querySelector(".bodyTable").innerHTML = '';
+
             $("#bodyTable").append(
-                `<tr><td><input type="checkbox" class="check" name="${tarefas[i].id}"></td>
+                `<tr><td><input type="checkbox" class="check" name="${tarefas[i].id}" checked></td>
                 <td><strike>${tarefas[i].tarefa}</strike></td>
                 <td><strike>${tarefas[i].prazo}</strike></td></tr>`);
         }
@@ -70,15 +73,18 @@ mostrarTerminadas.onclick = function mostrarTerminadas() {
 
 };
 
+//remove do array os que estão selecionados e dps lista novamente
 removerTarefas.onclick = function removerTarefas() {
     let checks = document.querySelectorAll(".check");
 
     for (var i = 0; i < tarefas.length; i++) {
 
         if (checks[i].checked) {
-            tarefas[i].terminada = true;
+           // tarefas[i].terminada = true;
+           tarefas.splice(i);
         }
     }
+    console.log(tarefas);
 
     idCont--;
     listarTarefas();
